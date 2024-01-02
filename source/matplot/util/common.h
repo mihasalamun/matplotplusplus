@@ -5,12 +5,13 @@
 #ifndef MATPLOTPLUSPLUS_COMMON_H
 #define MATPLOTPLUSPLUS_COMMON_H
 
-#include <matplot/detail/config.h>
 #include <algorithm>
 #include <cctype>
 #include <complex>
 #include <functional>
+#include <iostream>
 #include <map>
+#include <matplot/detail/config.h>
 #include <matplot/util/concepts.h>
 #include <numeric>
 #include <sstream>
@@ -68,6 +69,18 @@ namespace matplot {
         } else {
             return num2str(num);
         }
+    }
+
+    template <class T>
+    std::string num2unit(Arithmetic<T> num, const std::string &format) {
+        std::ostringstream ss;
+        ss.precision(10);
+        ss << std::fixed;
+        if (format == "epslatex")
+            ss << 0.004 * num;
+        else
+            ss << num;
+        return ss.str();
     }
 
     template <class T = double> T str2num(std::string_view text) {

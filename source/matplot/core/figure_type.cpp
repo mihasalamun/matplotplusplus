@@ -19,7 +19,8 @@ namespace matplot {
 
     figure_type::figure_type(size_t index, bool quiet_mode)
         : quiet_mode_(quiet_mode), number_(index) {
-#if defined(_WIN32) || defined(_WIN64) || defined(__MINGW32__) || defined(__CYGWIN__)
+#if defined(_WIN32) || defined(_WIN64) || defined(__MINGW32__) ||              \
+    defined(__CYGWIN__)
         // On windows, Helvetica will fallback to Sans anyway
         // So we avoid this warning by setting it to Sans already
         font_ = "Sans";
@@ -607,7 +608,8 @@ namespace matplot {
         }
 
         if (backend::gnuplot::terminal_has_size_option(terminal)) {
-            ss << " size " << num2str(width()) << "," << num2str(height());
+            ss << " size " << num2unit(width(), terminal) << ","
+               << num2unit(height(), terminal);
         }
 
         if (backend::gnuplot::terminal_has_enhanced_option(terminal)) {

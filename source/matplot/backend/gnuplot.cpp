@@ -218,8 +218,8 @@ namespace matplot::backend {
         } else {
             if (terminal_has_size_option(terminal_)) {
                 run_command("set terminal " + terminal_ + " size " +
-                            num2str(position_[2]) + "," +
-                            num2str(position_[3]));
+                            num2unit(position_[2], terminal_) + "," +
+                            num2unit(position_[3], terminal_));
             }
         }
     }
@@ -236,8 +236,8 @@ namespace matplot::backend {
         } else {
             if (terminal_has_size_option(terminal_)) {
                 run_command("set terminal " + terminal_ + " size " +
-                            num2str(position_[2]) + "," +
-                            num2str(position_[3]));
+                            num2unit(position_[2], terminal_) + "," +
+                            num2unit(position_[3], terminal_));
             }
         }
     }
@@ -254,7 +254,8 @@ namespace matplot::backend {
         }
         if (terminal_has_size_option(terminal_)) {
             run_command("set terminal " + terminal_ + " size " +
-                        num2str(position_[2]) + "," + num2str(position_[3]));
+                        num2unit(position_[2], terminal_) + "," +
+                        num2unit(position_[3], terminal_));
         }
     }
 
@@ -266,7 +267,8 @@ namespace matplot::backend {
         }
         if (terminal_has_size_option(terminal_)) {
             run_command("set terminal " + terminal_ + " size " +
-                        num2str(position_[2]) + "," + num2str(position_[3]));
+                        num2unit(position_[2], terminal_) + "," +
+                        num2unit(position_[3], terminal_));
         }
     }
 
@@ -401,7 +403,7 @@ namespace matplot::backend {
         SV_CONSTEXPR std::string_view whitelist[] = {
             "qt",       "aqua",    "caca", "canvas", "eepic",    "emf",
             "gif",      "jpeg",    "pbm",  "png",    "pngcairo", "sixelgd",
-            "tkcanvas", "windows", "wxt",  "svg"};
+            "tkcanvas", "windows", "wxt",  "svg",    "epslatex"};
         return std::find(std::begin(whitelist), std::end(whitelist), t) !=
                std::end(whitelist);
     }
