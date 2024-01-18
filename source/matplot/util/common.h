@@ -77,7 +77,7 @@ namespace matplot {
         ss.precision(10);
         ss << std::fixed;
         if (format == "epslatex")
-            ss << 0.004 * num;
+            ss << 0.003 * num;
         else
             ss << num;
         return ss.str();
